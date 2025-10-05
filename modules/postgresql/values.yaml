@@ -58,6 +58,6 @@ autoscaling:
   enable: false
 
 image:
-  repository: bitnami/postgresql
-  tag: 16.3.0-debian-11-r0
+  repository: ubuntu/postgres
+  tag: 13-21.04_edge
   pullPolicy: IfNotPresent

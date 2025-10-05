@@ -76,7 +76,7 @@ metadata:
     helm.sh/chart: postgresql-16.3.0
 type: Opaque
 data:
-  postgres-password: "WDNsd1ptQmM5dw=="
+  postgres-password: "cmZOWjBJUVJSYQ=="
   # We don't auto-generate LDAP password when it's not provided as we do for other passwords
 ---
 # Source: postgresql/charts/postgresql/templates/primary/svc-headless.yaml
@@ -186,7 +186,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: postgresql
-          image: "bitnami/postgresql:16.3.0-debian-11-r0"
+          image: "ubuntu/postgres:13-21.04_edge"
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
