@@ -59,3 +59,5 @@ autoscaling:
 
 image:
   repository: bitnami/postgresql
+  tag: latest
+  pullPolicy: Always
