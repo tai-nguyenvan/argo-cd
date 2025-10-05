@@ -19,3 +19,11 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 3
   targetCPUUtilizationPercentage: 80
+
+httpRoute:
+  enabled: true
+  kind: HTTPRoute  # Ensure 'Kind' is specified here
+  name: "postgresql-http-route"
+  host: "postgresql.local"
+  paths:
+    - "/"

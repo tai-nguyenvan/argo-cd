@@ -76,7 +76,7 @@ metadata:
     helm.sh/chart: postgresql-16.0.2
 type: Opaque
 data:
-  postgres-password: "MWNncGRtUk9vbw=="
+  postgres-password: "TGFld2VQRlZSMg=="
   # We don't auto-generate LDAP password when it's not provided as we do for other passwords
 ---
 # Source: postgresql/charts/postgresql/templates/primary/svc-headless.yaml
@@ -366,15 +366,6 @@ spec:
           requests:
             storage: "8Gi"
 ---
-# Source: postgresql/templates/httproute.yaml
-httpRoute:
-  enabled: true  # Enable HTTPRoute
-  # Optionally, specify additional HTTPRoute settings
-  # hosts:
-  #   - postgresql.example.com
-  # paths:
-  #   - /
----
 # Source: postgresql/templates/ingress.yaml
 ingress:
   enabled: true  # Enable Ingress
@@ -389,6 +380,25 @@ serviceAccount:
   name: postgresql-service-account  # Optional: name of the ServiceAccount
   automount: true  # Optional: allows the service account token to be automatically mounted
   annotations: {}  # Optional: add custom annotations here
+---
+# Source: postgresql/templates/httproute.yaml
+apiVersion: networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: postgresql-http-route
+  labels:
+    app: postgresql
+spec:
+  hostnames:
+    - postgresql.local
+  rules:
+    - matches:
+        - uri:
+            type: Prefix
+            value: /
+      forwardTo:
+        - serviceName: postgresql
+          port: 5432
 ---
 # Source: postgresql/templates/tests/test-connection.yaml
 apiVersion: v1
