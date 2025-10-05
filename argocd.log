@@ -1,0 +1,205 @@
+   91  helm repo add argo https://argoproj.github.io/argo-helm
+   97  curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+   98  echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+  100  sudo apt-get install helm
+  104  helm repo add argo https://argoproj.github.io/argo-helm
+  106  helm repo add argo https://argoproj.github.io/argo-helm
+  108  helm search repo argo
+  109  helm template argo argo/argo-cd --output-dir argocd-manifests
+  112  helm show values argo/argo-cd > values.yaml
+  126  helm fetch argo/argo-cd
+  132  helm install --values values.yaml argocd argo/argo-cd --namespace argocd
+  134  helm install --values values.yaml argocd argo/argo-cd --namespace argocd
+  140  helm install --values values.yaml argocd argo/argo-cd --namespace argocd
+  141  sudo helm install --values values.yaml argocd argo/argo-cd --namespace argocd
+  142  helm install --values values.yaml argocd argo/argo-cd --namespace argocd
+  147  helm install --values values.yaml argocd argo/argo-cd --namespace argocd
+  150  helm install --values values.yaml argocd argo/argo-cd --namespace argocd
+  153  helm install --values values.yaml argocd argo/argo-cd --namespace argocd
+  163  helm install --values values.yaml argocd argo/argo-cd --namespace argocd
+  176  helm repo add argo-cd https://argoproj.github.io/argo-helm
+  177  helm dep update charts/argo-cd/
+  190  helm install argo-cd charts/argo-cd/
+  196  helm install argo-cd charts/argo-cd/
+  200  helm install argo-cd charts/argo-cd/
+  210  helm install argo-cd charts/argo-cd/
+  247  helm install --values values.yaml argocd argo/argo-cd --namespace argocd
+  249  helm install argo-cd charts/argo-cd/
+  252  helm install argo-cd charts/argo-cd/
+  254  helm install argo-cd charts/argo-cd/
+  341  helm install argo-cd charts/argo-cd/
+  385  helm install app-queue oci://registry-1.docker.io/bitnamicharts/kafka
+  435  helm dependancy update
+  436  helm dependency update
+  443  helm repo list
+  444  helm repo remove argo
+  445  helm repo remove codecentric
+  446  helm repo list
+  448  helm dependency update
+  449  helm dependency update argo-cd/
+  450  helm dependency build
+  451  helm dependency build argo-cd/
+  454  helm template argo-cd > tartget/
+  455  helm template argo-cd > tartget
+  456  helm template argo-cd > tartget/argo-cd
+  458  helm add keycloak
+  459  helm create app-keycloak
+  462  helm install kc ./keycloak --set 'keycloak.args=["start"]'
+  463  helm repo add keycloak https://benc-uk.github.io/keycloak-helm
+  464  helm repo update keycloak
+  467  helm dependency update app-keycloak/
+  468  helm dependency build app-keycloak/
+  469  helm template app-keycloak > tartget/app-keycloak
+  470  helm install app-keycloak/
+  471  helm install app-keycloak
+  472  helm install kc keycloak/keycloak
+  473  helm list
+  474  helm rmove app-queue
+  475  helm remove app-queue
+  476  helm uninstall app-queue
+  477  helm list
+  478  helm uninstall ck-gateway-class  
+  479  helm list
+  480  helm uninstall kc
+  481  helm list
+  495  helm ls
+  516  helm ls
+  517  helm list
+  518  helm repo list
+  519  helm repo remove argo
+  520  helm repo list
+  522  helm dependency update charts/argo-cd
+  523  helm dependency build charts/argo-cd
+  524  helm repo list
+  525  helm repo add argo https://argoproj.github.io/argo-helm
+  526  helm repo update
+  527  helm repo list
+  528  helm install argocd argo/argo-cd
+  529  helm list
+  530  helm install argocd argo/argo-cd -n argo-cd
+  531  helm repo update
+  532  helm dependency update charts/argo-cd/
+  537  helm install argo-cd argo/argo-cd --version 7.2.0 -f values.yaml
+  538  helm install argo-cd argo/argo-cd --version 7.2.0 -f values.yaml -n argo-cd
+  542  helm install argo-cd argo/argo-cd --version 7.2.0 -f values.yaml -n argocd
+  543  helm reinstall argo-cd argo/argo-cd --version 7.2.0 -f values.yaml -n argocd
+  544  helm install argo-cd argo/argo-cd --version 7.2.0 -f values.yaml -n argocd
+  545  helm unintall argo-cd -n default
+  546  helm uninstall argo-cd -n default
+  547  helm install argo-cd argo/argo-cd --version 7.2.0 -f values.yaml -n argocd
+  548  helm uninstall argo-cd -n default
+  549  helm install argocd argo/argo-cd --namespace argocd
+  552  helm repo list
+  553  helm repo remove argo-cd
+  555  helm repo list
+  556  helm repo add argo https://argoproj.github.io/argo-helm
+  557  helm repo list
+  558  helm repo update
+  559  helm install argocd argo/argo-cd -n argocd
+  561  helm dependency build charts/argo-cd/
+  569  helm uninstall agrocd
+  570  helm lisrt
+  571  helm list
+  572  helm uninstall agro-cd
+  573  helm uninstall argcd-cd
+  574  helm uninstall argocd-cd
+  575  helm uninstall argo-cd
+  577  helm install argocd argocd/argocd -n argocd
+  578  helm repo list
+  579  helm install argocd argocd/argocd -n argo-cd
+  580  helm install argo-cd argocd/argocd -n argo-cd
+  581  helm install argocd argocd/argo-cd -n argo-cd
+  583  helm install argocd argo/argo-cd --namespace argocd
+  585  helm repo list
+  586  helm install argocd argo/argo-cd --namespace argocd
+  587  helm uninstall argo-cd
+  588  helm list
+  589  helm uninstall ck-gateway-class
+  590  helm list
+  592  helm dependency build charts/argo-cd/
+  593  helm dependency update charts/argo-cd
+  594  helm install --help
+  595  helm install argo-cd argo/argo-cd --namespace argo-cd
+  596  helm install argo-cd argo/argo-cd --namespace argocd
+  598  helm
+  599  helm repo list
+  600  helm repo remove argo
+  601  helm repo list
+  603  helm repo add argo https://argoproj.github.io/argo-helm
+  604  helm repo list
+  605  helm template argo argo/argo-cd --output-dir argocd-manifests
+  616  helm repo add argo-cd https://argoproj.github.io/argo-helm
+  617  helm repo list
+  618  helm repo remove argo
+  619  helm repo list
+  620  helm install argo-cd charts/argo-cd
+  678  helm install argo-cd charts/argo-cd/
+  679  helm
+  680  helm list
+  699  helm
+  700  helm list
+  701  helm revmove argo-cd
+  702  helm remove argo-cd
+  703  helm install argo-cd
+  704  helm uninstall argo-cd
+  707  helm uninstall argo-cd -n default
+  708  helm uninstall argo-cd -n argocd
+  710  helm
+  716  helm dependency update charts/argo-cd/
+  717  helm repo list
+  723  helm install --values values.yaml argocd argo/argo-cd --namespace argocd
+  725  helm install argo-cd charts/argo-cd/\
+  726  helm install argo-cd charts/argo-cd/ -n argocd
+  727  helm repo list
+  728  helm install argocd argo/argo-cd -n argo-cd
+  730  helm install argocd argo/argo-cd -n argo-cd
+  731  helm repo list
+  734  helm repo list
+  735  helm repo remove argo-cd
+  736  helm repo update
+  737  helm dep update charts/argo-cd/
+  738  helm install argocd argo/argo-cd --namespace argocd
+  740  helm uninstall argo-cd -n default
+  742  helm install argocd argo/argo-cd --namespace argo-cd
+  743  helm install argo-cd charts/argo-cd/ --namespace argo-cd 
+  752  helm install argo-cd charts/argo-cd/ --namespace argo-cd 
+  753  helm install argo-cd charts/argo-cd/ --namespace argocd 
+  763  helm install argo-cd charts/argo-cd/ --namespace argocd
+  776  helm install argo-cd charts/argo-cd/ --namespace argocd
+  811  helm install argo-cd charts/argo-cd/ --namespace argocd
+  816  helm install argo-cd charts/argo-cd/ --namespace argocd
+  848  argocd app create helm-guestbook --repo https://github.com/argoproj/argocd-example-apps.git --path helm-guestbook --dest-namespace default --dest-server https://kubernetes.default.svc --helm-set replicaCount=2
+  864  helm install keycload oci://registry-1.docker.io/bitnamicharts/keycloak
+  865  helm install keycloak oci://registry-1.docker.io/bitnamicharts/keycloak
+  866  helm list
+  867  helm uninstall keycloak
+  870  helm install keycloak oci://registry-1.docker.io/bitnamicharts/keycloak --namespace argocd
+  871  helm dep update modules/keycloak
+  872  helm dep update charts/modules/keycloak
+  874  argocd app create apps-common --repo https://github.com/tai-nguyenvan/argo-cd.git --path modules/postgresql --dest-namespace dev --dest-server https://kubernetes.default.svc --helm-set replicaCount=2
+  898  helm dep update modules/postgre/
+  900  helm install keycloak bitnami/keycloak     --namespace keycloak     --create-namespace     --version $VERSION     --set ingress.enabled=true     --set ingress.tls=true     --set ingress.hostname=keycloak.internal.xxxxxx.com     --set replicaCount=1     --set postgresql.enabled=true     --set auth.createAdminUser=true     --set auth.adminUser=admin     --set postgresql.postgresqlUsername=keycloakdb     --set postgresql.postgresqlPassword=keycloakdb     --set postgresql.postgresqlDatabase=keycloakdb     --set postgresql.persistence.enabled=true     --set global.storageClass=standard     --set ingress.servicePort=https     --set service.type=ClusterIP     --set-string ingress.annotations."nginx\.ingress\.kubernetes\.io/backend-protocol"="HTTPS"     --set-string ingress.annotations."kubernetes\.io/ingress\.class"=nginx     --set-string ingress.annotations."cert-manager\.io/cluster-issuer"=letsencrypt-staging
+  912  helm list
+  918  helm list
+  920  helm repo list
+  921  helm repo keycload
+  922  helm repo keycloak
+  923  helm repo remove keycloak
+  924  helm repo list
+  935  helm dep update modules/prometheus/
+  946  helm install keycloak bitnami/keycloak     --namespace keycloak     --create-namespace     --version $VERSION     --set ingress.enabled=true     --set ingress.tls=true     --set ingress.hostname=keycloak.internal.xxxxxx.com     --set replicaCount=1     --set postgresql.enabled=true     --set auth.createAdminUser=true     --set auth.adminUser=admin     --set postgresql.postgresqlUsername=keycloakdb     --set postgresql.postgresqlPassword=keycloakdb     --set postgresql.postgresqlDatabase=keycloakdb     --set postgresql.persistence.enabled=true     --set global.storageClass=standard     --set ingress.servicePort=https     --set service.type=ClusterIP     --set-string ingress.annotations."nginx\.ingress\.kubernetes\.io/backend-protocol"="HTTPS"     --set-string ingress.annotations."kubernetes\.io/ingress\.class"=nginx     --set-string ingress.annotations."cert-manager\.io/cluster-issuer"=letsencrypt-staging
+  947  argocd app create apps-common --repo https://github.com/tai-nguyenvan/argo-cd.git --path modules/prometheus --dest-namespace dev --dest-server https://kubernetes.default.svc --helm-set replicaCount=2
+  948  helm modules/prometheus/
+  949  helm dep upate modules/prometheus/
+  950  helm dep update modules/prometheus/
+  951  helm dep upate modules/prometheus/
+  952  helm dep update modules/prometheus/
+  953  helm dep update modules/postgresql/
+  957  argocd app create apps-common --repo https://github.com/tai-nguyenvan/argo-cd.git --path modules/postgresql --dest-namespace dev --dest-server https://kubernetes.default.svc --helm-set replicaCount=2
+  969  helm install modules/postgresql bitnami/postgresql --version 11.1.26
+  970  helm repo list
+  971  helm repo add bitnami https://charts.bitnami.com/bitnami
+  972  helm install modules/postgresql bitnami/postgresql --version 11.1.26
+  973  helm repo update
+  974  helm install modules/postgresql bitnami/postgresql --version 11.1.26
+  976  history | grep helm >> argocd.log
