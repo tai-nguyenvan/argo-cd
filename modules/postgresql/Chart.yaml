@@ -1,11 +1,13 @@
 apiVersion: v2
 name: postgresql
-description: A Helm chart for PostgreSQL with dependencies
+description: A Helm chart for PostgreSQL
+version: 16.0.2   # Chart version
+appVersion: "13"  # Application version (PostgreSQL version)
+type: application
+
 dependencies:
   - name: postgresql
     version: "16.0.2"
-    repository: "https://charts.bitnami.com/bitnami"
-    condition: postgresql.enabled  # Add conditions for enabling/disabling dependencies
-version: 16.0.2
-appVersion: "13"
-type: application
+    repository: "https://charts.bitnami.com/bitnami"  # Ensure this URL is correct
+
+# Other metadata fields like maintainers can be added if necessary

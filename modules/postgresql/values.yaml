@@ -1,37 +1,21 @@
-# PostgreSQL Configuration
-postgresqlUsername: admin
-postgresqlPassword: password@123
-postgresqlDatabase: postgresql
+# Service configuration
+service:
+  port: 5432  # Port PostgreSQL will listen on (default is 5432)
 
-# Enable persistence to store PostgreSQL data
+replicaCount: 1
+
+image:
+  repository: bitnami/postgresql
+  tag: "13"
+
+postgresqlPassword: "password@123"
+
 persistence:
   enabled: true
   size: 8Gi
-  storageClass: "standard"  # Adjust based on your cluster's storage class
 
-# Service Configuration
-service:
-  type: ClusterIP  # You can use LoadBalancer for external access
-  port: 5432
-
-# Resources for PostgreSQL container
-resources:
-  requests:
-    memory: "512Mi"
-    cpu: "250m"
-  limits:
-    memory: "1Gi"
-    cpu: "500m"
-
-# Replication settings (if using replication)
-replication:
-  enabled: false  # Set to true if you need a multi-node setup
-  replicaCount: 2  # Number of replicas (for replication setup)
-
-# Access Control (optional)
-# If you need external access to PostgreSQL
-postgresqlExternalAccess:
-  enabled: false  # Set to true if you want to expose the DB externally
-  service:
-    type: LoadBalancer
-    port: 5432
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
