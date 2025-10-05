@@ -2,7 +2,7 @@
 service:
   port: 5432  # Port PostgreSQL will listen on (default is 5432)
 
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: bitnami/postgresql
