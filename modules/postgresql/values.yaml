@@ -159,3 +159,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+postgresql:
+  existingSecret: apps-common-postgresql
+  username: admin  # optional if you want to override
+  password: password@123  # optional if you want to override
+  database: postgresql  # optional if you want to override

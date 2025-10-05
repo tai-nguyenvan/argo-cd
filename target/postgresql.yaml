@@ -89,7 +89,7 @@ metadata:
     helm.sh/chart: postgresql-16.0.2
 type: Opaque
 data:
-  postgres-password: "Qzlab1J2R1FoVQ=="
+  postgres-password: "SjRLVjhjMmFqUg=="
   # We don't auto-generate LDAP password when it's not provided as we do for other passwords
 ---
 # Source: postgresql/charts/postgresql/templates/primary/svc-headless.yaml
