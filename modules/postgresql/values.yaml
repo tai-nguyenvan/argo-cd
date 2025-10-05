@@ -58,6 +58,6 @@ autoscaling:
   enable: false
 
 image:
-  repository: ubuntu/postgres
-  tag: latest
-  pullPolicy: Always
+  repository: postgres
+  tag: 17.6-alpine
+  pullPolicy: IfNotPresent
