@@ -35,4 +35,3 @@ postgresqlExternalAccess:
   service:
     type: LoadBalancer
     port: 5432
-
