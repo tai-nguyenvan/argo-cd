@@ -1,6 +1,17 @@
 apiVersion: v2
 name: argo-cd
 version: 1.0.0
+kind: ClusterRoleBinding
+metadata:
+  name: argocd-admin
+subjects:
+- kind: ServiceAccount
+  name: argocd-server
+  namespace: argocd
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
 dependencies:
   - name: argo-cd
     version: 5.46.8
