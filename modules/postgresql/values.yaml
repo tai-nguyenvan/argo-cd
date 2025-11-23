@@ -1,63 +1,42 @@
-auth:
-  enablePostgresUser: true
-  postgresPassword: password@123
-  username: admin
-  password: password@123
-  database: postgresql
-
-primary:
-  persistence:
-    enabled: true
-    storageClass: "standard"  # Use your cluster's storage class
-    accessModes:
-      - ReadWriteOnce
-    size: 8Gi
-
-service:
-  type: ClusterIP
-  port: 5432
-
-resources:
-  requests:
-    memory: 256Mi
-    cpu: 250m
-  limits:
-    memory: 512Mi
-    cpu: 500m
-
-livenessProbe:
-  enabled: true
-  initialDelaySeconds: 30
-  timeoutSeconds: 5
-  failureThreshold: 6
-
-readinessProbe:
-  enabled: true
-  initialDelaySeconds: 5
-  timeoutSeconds: 3
-  failureThreshold: 6
-
-metrics:
-  enabled: true
-  serviceMonitor:
-    enabled: false
-
-networkPolicy:
-  enabled: false
-
-serviceAccount:
-  create: false
-
-ingress:
-  enable: false
-
-httpRoute:
-  enable: false
-
-autoscaling:
-  enable: false
-
-image:
-  repository: postgres
-  tag: 17.6-alpine
-  pullPolicy: IfNotPresent
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgresql-database
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: postgresql
+    repository: https://charts.bitnami.com/bitnami
+    targetRevision: 16.7.15
+    helm:
+      valuesObject:
+        auth:
+          enablePostgresUser: true
+          # --- SECRETS MANAGED EXTERNALLY ---
+          # Use your secrets manager integration (e.g., External Secrets Operator)
+          # to reference actual secrets here instead of hardcoding values.
+          # postgresPassword:
+          # username:
+          # password:
+          # database:
+          # ----------------------------------
+          # NOTE: The actual implementation depends on your chosen secret management tool.
+        # ... other fields remain the same ...
+        primary:
+          persistence:
+            enabled: true
+            storageClass: "standard"
+            accessModes:
+              - ReadWriteOnce
+            size: 8Gi
+        # ... rest of the spec ...
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: data-stores # Changed from 'default' to a specific namespace
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

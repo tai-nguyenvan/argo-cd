@@ -1,0 +1,13 @@
+[Unit]
+Description=Kubectl ArgoCD Port Forwarding Service
+After=network-online.target
+
+[Service]
+User=nvtai
+ExecStart=/usr/bin/kubectl port-forward svc/argo-cd-argocd-server -n argocd 8080:443 --address='0.0.0.0'
+Restart=always
+RestartSec=10
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
