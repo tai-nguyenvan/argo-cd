@@ -1,42 +1,34 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: postgresql-database
+  name: postgresql
   namespace: argocd
 spec:
   project: default
   source:
     chart: postgresql
-    repository: https://charts.bitnami.com/bitnami
-    targetRevision: 16.7.15
+    repoURL: charts.bitnami.com
+    targetRevision: 15.x.x # Specify a stable chart version, e.g., 12.8.2
     helm:
-      valuesObject:
-        auth:
-          enablePostgresUser: true
-          # --- SECRETS MANAGED EXTERNALLY ---
-          # Use your secrets manager integration (e.g., External Secrets Operator)
-          # to reference actual secrets here instead of hardcoding values.
-          # postgresPassword:
-          # username:
-          # password:
-          # database:
-          # ----------------------------------
-          # NOTE: The actual implementation depends on your chosen secret management tool.
-        # ... other fields remain the same ...
-        primary:
-          persistence:
-            enabled: true
-            storageClass: "standard"
-            accessModes:
-              - ReadWriteOnce
-            size: 8Gi
-        # ... rest of the spec ...
+      values: |
+        postgresqlUsername: argo_user
+        postgresqlDatabase: argo_db
+        # It is highly recommended to manage secrets via an external Secret management tool (e.g., Vault)
+        # or use existing secrets.
+        postgresqlPassword: supersecretpassword
+        # Optionally, configure persistence
+        # primary:
+        #   persistence:
+        #     enabled: true
+        #     storageClass: standard
+        #     size: 10Gi
   destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: data-stores # Changed from 'default' to a specific namespace
+    server: https://kubernetes.default.svc
+    namespace: postgres-namespace # Ensure this namespace exists in your cluster
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true # ArgoCD can create the destination namespace if needed
+

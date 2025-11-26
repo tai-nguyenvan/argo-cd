@@ -45,3 +45,5 @@ sudo systemctl status k8s-argo-forward.service
 sudo journalctl -u k8s-argo-forward.service -f
 
 sudo reboot now
+
+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
