@@ -1,8 +1,22 @@
+replicaCount: 1
+
+imagePullSecrets: []
+
+service:
+  type: ClusterIP
+  port: 3000
+
+ingress:
+  enabled: true
+  class: nginx
+  host: forgejo.example.com
+  path: /
+
 forgejo:
   app:
     environment: production
   image:
-    repository: docker.io/forgejo/forgejo
+    repository: codeberg.org/forgejo/forgejo
     name: forgejo
     tag: 13.0.3
     pullPolicy: IfNotPresent

@@ -1,33 +1,7 @@
 argo-cd:
   server:
-    dnsPolicy: "None"
-    dnsConfig:
-      nameservers:
-        - "8.8.8.8"
-        - "1.1.1.1"
-      searches:
-        - "default.svc.cluster.local"
-        - "svc.cluster.local"
-        - "cluster.local"
-      options:
-        - name: "ndots"
-          value: "2"
+    dnsPolicy: "ClusterFirst"
   repoServer:
-    dnsPolicy: "None"
-    dnsConfig:
-      nameservers:
-        - "8.8.8.8"
-        - "1.1.1.1"
-      searches:
-        - "default.svc.cluster.local"
-        - "svc.cluster.local"
-        - "cluster.local"
-      options:
-        - name: "ndots"
-          value: "5"
+    dnsPolicy: "ClusterFirst"
   applocationSet:
-    dnsPolicy: "None"
-    dnsConfig:
-      nameservers:
-        - "8.8.8.8"
-        - "1.1.1.1"
+    dnsPolicy: "ClusterFirst"

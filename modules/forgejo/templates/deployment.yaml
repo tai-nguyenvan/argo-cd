@@ -1,20 +1,26 @@
-apiVersion: apps/v1 
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: forgejo-blue
-  namespace: development
+  name: {{ default "forgejo-blue" .Values.fullnameOverride }}
+  # namespace intentionally omitted: ArgoCD / Helm will set destination namespace
 spec:
-  replicas: 1
+  replicas: {{ default 1 .Values.replicaCount }}
   selector:
     matchLabels:
-      app: forgejo-blue
+      app: {{ default "forgejo-blue" .Values.fullnameOverride }}
   template:
     metadata:
       labels:
-        app: forgejo-blue
+        app: {{ default "forgejo-blue" .Values.fullnameOverride }}
     spec:
+      # optional imagePullSecrets (set in values.yaml) for private registries
+{{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+{{ toYaml .Values.imagePullSecrets | indent 8 }}
+{{- end }}
       containers:
-        - name: forgejo
-          image: docker.io/forgejo/forgejo:latest
+        - name: {{ default "forgejo" .Values.forgejo.image.name }}
+          image: "{{ .Values.forgejo.image.repository }}:{{ .Values.forgejo.image.tag }}"
+          imagePullPolicy: {{ default "IfNotPresent" .Values.forgejo.image.pullPolicy }}
           ports:
-            - containerPort: 3000
+            - containerPort: {{ default 3000 .Values.service.port }}
