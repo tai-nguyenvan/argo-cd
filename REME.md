@@ -50,3 +50,28 @@ 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
 
 
 kubectl apply -f modules/postgresql/values.yaml -n argocd
+
+
+kubectl apply -f - <<EOF
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: forgejo
+  namespace: argocd
+spec:
+  project: development
+  source:
+    repoURL: 'https://github.com/tai-nguyenvan/argo-cd'
+    targetRevision: main
+    path: manifest
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: development
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    sysOptions:
+      CreateNamespace=true
+EOF
+

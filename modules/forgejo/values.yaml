@@ -2,9 +2,9 @@ forgejo:
   app:
     environment: production
   image:
-    repository: docker.io/forgejo/forgejo
+    repository: codeberg.org/forgejo/forgejo
     name: forgejo
-    tag: latest
+    tag: 13.0.3
 
 fullnameOverride: forgejo-blue
 namespaceOverride: development
