@@ -47,3 +47,6 @@ sudo journalctl -u k8s-argo-forward.service -f
 sudo reboot now
 
 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
+
+
+kubectl apply -f modules/postgresql/values.yaml -n argocd

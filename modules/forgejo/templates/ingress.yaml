@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: forgejo-ingress
+  namespace: development
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: forgejo.example.com
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: forgejo-pool
+              port:
+                number: 3000

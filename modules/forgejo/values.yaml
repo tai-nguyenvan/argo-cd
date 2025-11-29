@@ -1,0 +1,11 @@
+forgejo:
+  app:
+    environment: production
+  image:
+    repository: docker.io/forgejo/forgejo
+    name: forgejo
+    tag: latest
+
+fullnameOverride: forgejo-blue
+namespaceOverride: development
+serviceNameOverride: forgejo-pool

@@ -1,0 +1,4 @@
+apiVersion: v2
+name: forgejo
+description: A Helm chart for deploying Forgejo using Argo CD Application CRD
+version: 1.0.0
