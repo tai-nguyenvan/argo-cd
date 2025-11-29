@@ -2,9 +2,10 @@ forgejo:
   app:
     environment: production
   image:
-    repository: codeberg.org/forgejo/forgejo
+    repository: docker.io/forgejo/forgejo
     name: forgejo
     tag: 13.0.3
+    pullPolicy: IfNotPresent
 
 fullnameOverride: forgejo-blue
 namespaceOverride: development

@@ -1,8 +1,73 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: forgejo
+  namespace: argocd
+spec:
+  project: development
+  source:
+    repoURL: 'https://github.com/tai-nguyenvan/argo-cd.git'
+    targetRevision: main
+    path: modules/forgejo
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: development
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+# Write updated values to `modules/forgejo/values.yaml`
+cat > modules/forgejo/values.yaml <<'YAML'
+forgejo:
+  app:
+    environment: production
+  image:
+    repository: docker.io/forgejo/forgejo
+    name: forgejo
+    tag: 13.0.3
+    pullPolicy: IfNotPresent
 
+fullnameOverride: forgejo-blue
+namespaceOverride: development
+serviceNameOverride: forgejo-pool
+YAML
 
+# Create ArgoCD Application manifest at `argocd/forgejo-application.yaml`
+mkdir -p argocd
+cat > argocd/forgejo-application.yaml <<'YAML'
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: forgejo
+  namespace: argocd
+spec:
+  project: development
+  source:
+    repoURL: 'https://github.com/tai-nguyenvan/argo-cd.git'
+    targetRevision: main
+    path: modules/forgejo
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: development
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+YAML
 
-JhYN3qgafGMXZD5l
+# Optional: test install locally with Helm
+# helm upgrade --install forgejo modules/forgejo \
+#   --namespace development --create-namespace \
+#   -f modules/forgejo/values.yaml
 
+# Apply the ArgoCD Application (ArgoCD must be installed in cluster)
+# kubectl apply -f argocd/forgejo-application.yaml -n argocd
 
 curl -L https://github.com/kubernetes-sigs/cluster-api/releases/download/v1.9.3/clusterctl-linux-amd64 -o clusterctl
 
