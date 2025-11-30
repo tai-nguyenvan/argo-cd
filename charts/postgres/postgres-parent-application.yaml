@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/tai-nguyenvan/argo-cd.git'
+    targetRevision: main
+    path: charts/postgres
+    directory:
+      recurse: true
+      exclude: 'sealedsecret/**,secret/**'
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
