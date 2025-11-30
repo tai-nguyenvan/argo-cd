@@ -18,7 +18,6 @@ persistence:
   size: 1Gi
 
 postgresql:
-  username: forgejo
-  password: forgejo_pass
-  database: forgejo_db
-
+  username: admin
+  password: pass@123
+  database: postgres

@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: development
+  namespace: argocd
+spec:
+  description: Project for development applications
+  sourceRepos:
+    - 'https://github.com/tai-nguyenvan/argo-cd.git'
+    - '*'
+  destinations:
+    - server: 'https://kubernetes.default.svc'
+      namespace: development
+  # permit all namespace-scoped resources; add tighter controls as needed
+  namespaceResourceWhitelist:
+    - group: ""
+      kind: "*"
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+
