@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres-blue
+  namespace: argocd
+spec:
+  project: development
+  source:
+    repoURL: 'https://github.com/tai-nguyenvan/argo-cd.git'
+    targetRevision: main
+    path: modules/postgres
+    helm:
+      values: |
+        fullnameOverride: postgres-blue
+        postgresql:
+          username: forgejo
+          password: forgejo_pass
+          database: forgejo_db
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: development
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+

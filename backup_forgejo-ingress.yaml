@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"kubernetes.io/ingress.class":"nginx"},"name":"forgejo-ingress","namespace":"development"},"spec":{"rules":[{"host":"forgejo.example.com","http":{"paths":[{"backend":{"service":{"name":"forgejo-blue","port":{"number":3000}}},"path":"/","pathType":"Prefix"}]}}]}}
+    kubernetes.io/ingress.class: nginx
+    meta.helm.sh/release-name: forgejo
+    meta.helm.sh/release-namespace: development
+  creationTimestamp: "2025-11-29T13:51:10Z"
+  generation: 2
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: forgejo-ingress
+  namespace: development
+  resourceVersion: "372223"
+  uid: 80de3eae-e0c9-4db4-b09d-92745dbe2b84
+spec:
+  rules:
+  - host: forgejo.example.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: forgejo-blue
+            port:
+              number: 3000
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.1.56

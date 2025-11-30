@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ default "postgres-blue" .Values.fullnameOverride }}
+  # namespace intentionally omitted: ArgoCD / Helm will set destination namespace
+spec:
+  replicas: {{ default 1 .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ default "postgres-blue" .Values.fullnameOverride }}
+  template:
+    metadata:
+      labels:
+        app: {{ default "postgres-blue" .Values.fullnameOverride }}
+    spec:
+      containers:
+        - name: postgres
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ default "IfNotPresent" .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ default 5432 .Values.service.port }}
+          env:
+            - name: POSTGRES_USER
+              value: "{{ .Values.postgresql.username }}"
+            - name: POSTGRES_PASSWORD
+              value: "{{ .Values.postgresql.password }}"
+            - name: POSTGRES_DB
+              value: "{{ .Values.postgresql.database }}"
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ default "postgres-pvc" .Values.fullnameOverride }}

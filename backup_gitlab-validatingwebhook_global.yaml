@@ -1,0 +1,54 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  annotations:
+    cert-manager.io/inject-ca-from-secret: gitlab/gitlab-certmanager-webhook-ca
+    meta.helm.sh/release-name: gitlab
+    meta.helm.sh/release-namespace: gitlab
+  creationTimestamp: "2025-11-29T06:34:05Z"
+  generation: 2
+  labels:
+    app: webhook
+    app.kubernetes.io/component: webhook
+    app.kubernetes.io/instance: gitlab
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: webhook
+    app.kubernetes.io/version: v1.17.4
+    helm.sh/chart: certmanager-v1.17.4
+  name: gitlab-certmanager-webhook
+  resourceVersion: "266301"
+  uid: 7fe2e8cc-3bd4-462f-a311-b1c33dec6edf
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJ3ekNDQVVpZ0F3SUJBZ0lSQUpGZW9kaGpIY2hqbUtlbVZuMHp4elV3Q2dZSUtvWkl6ajBFQXdNd0lqRWcKTUI0R0ExVUVBeE1YWTJWeWRDMXRZVzVoWjJWeUxYZGxZbWh2YjJzdFkyRXdIaGNOTWpVeE1USTVNRFl6TkRNNApXaGNOTWpZeE1USTVNRFl6TkRNNFdqQWlNU0F3SGdZRFZRUURFeGRqWlhKMExXMWhibUZuWlhJdGQyVmlhRzl2CmF5MWpZVEIyTUJBR0J5cUdTTTQ5QWdFR0JTdUJCQUFpQTJJQUJHM2RmdHpkSW1leHlnY2luOHZLVFVaTVZuZngKeGx2b05nSytPNHA0Y0hBTDRIMFRXOTBrK3RyVUVGVk0zZXRTeHZuQU9QcjFxbW1IN3l1RzRkN1cyV3pZWVh1WAovWnNocE8zTnBqUzZYV25EandKQkJhbmQ1eUYrNlpENDBGUFdPS05DTUVBd0RnWURWUjBQQVFIL0JBUURBZ0trCk1BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZGT0lXTkI1R3JGZ0kzeFAxSWFaMUJYUDJJOGUKTUFvR0NDcUdTTTQ5QkFNREEya0FNR1lDTVFER3Qvb0g4eHp6WTJMMVdObDZIclVXRkJUeEx4WXAyK0o4b3pJdwpCekhQUWhmRXpUOVl1UG1jaXVETjVwMmFON2tDTVFEV2sxa2lkQ0dreDdNQi9qbGcwMDNNU1M1Y01wUU1HZmFyCnRabklEdjhTQ3NXUWlpMEMyL0hLcElieDl5L2JXN0U9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: gitlab-certmanager-webhook
+      namespace: gitlab
+      path: /validate
+      port: 443
+  failurePolicy: Fail
+  matchPolicy: Equivalent
+  name: webhook.cert-manager.io
+  namespaceSelector:
+    matchExpressions:
+    - key: cert-manager.io/disable-validation
+      operator: NotIn
+      values:
+      - "true"
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - cert-manager.io
+    - acme.cert-manager.io
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - '*/*'
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 30

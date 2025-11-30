@@ -1,0 +1,5 @@
+apiVersion: v2
+name: postgres
+description: A Helm chart for deploying Postgres using an Argo CD Application CRD
+version: 1.0.0
+

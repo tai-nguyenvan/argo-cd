@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres-pool
+  namespace: argocd
+spec:
+  project: development
+  source:
+    repoURL: 'https://github.com/tai-nguyenvan/argo-cd.git'
+    targetRevision: main
+    path: charts/postgres/pool
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: development
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
