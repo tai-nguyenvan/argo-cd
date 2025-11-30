@@ -21,3 +21,9 @@ postgresql:
   username: admin
   password: pass@123
   database: postgres
+
+credentials:
+  secret:
+    enabled: false
+    # name of Kubernetes Secret to read credentials from when enabled
+    name: postgres-creds

@@ -19,13 +19,13 @@ spec:
           imagePullPolicy: {{ default "IfNotPresent" .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ default 5432 .Values.service.port }}
-          env:
-            - name: POSTGRES_USER
-              value: "{{ .Values.postgresql.username }}"
-            - name: POSTGRES_PASSWORD
-              value: "{{ .Values.postgresql.password }}"
-            - name: POSTGRES_DB
-              value: "{{ .Values.postgresql.database }}"
+{{- /* Render env block with correct indentation using printf+nindent to avoid template/indent errors */}}
+{{- if .Values.credentials.secret.enabled }}
+{{- $s := .Values.credentials.secret.name }}
+{{- printf "env:\n  - name: POSTGRES_USER\n    valueFrom:\n      secretKeyRef:\n        name: %s\n        key: POSTGRES_USER\n  - name: POSTGRES_PASSWORD\n    valueFrom:\n      secretKeyRef:\n        name: %s\n        key: POSTGRES_PASSWORD\n  - name: POSTGRES_DB\n    valueFrom:\n      secretKeyRef:\n        name: %s\n        key: POSTGRES_DB\n" $s $s $s | nindent 10 }}
+{{- else }}
+{{- printf "env:\n  - name: POSTGRES_USER\n    value: \"%s\"\n  - name: POSTGRES_PASSWORD\n    value: \"%s\"\n  - name: POSTGRES_DB\n    value: \"%s\"\n" .Values.postgresql.username .Values.postgresql.password .Values.postgresql.database | nindent 10 }}
+{{- end }}
           volumeMounts:
             - name: data
               mountPath: /var/lib/postgresql/data

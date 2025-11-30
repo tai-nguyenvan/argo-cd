@@ -15,7 +15,12 @@ spec:
   namespaceResourceWhitelist:
     - group: ""
       kind: "*"
+    - group: "apps"
+      kind: "Deployment"
+    - group: "apps"
+      kind: "StatefulSet"
+    - group: "*"
+      kind: "*"
   clusterResourceWhitelist:
     - group: "*"
       kind: "*"
-
