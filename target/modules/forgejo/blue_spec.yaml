@@ -15,7 +15,7 @@ spec:
       name: http
 ---
 # Source: forgejo/templates/deployment.yaml
-apiVersion: app/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: forgejo-blue
@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: forgejo
-          image: docker.io/forgejo/forgejo:latest
+          image: codeberg.org/forgejo/forgejo:13.0.3
           ports:
             - containerPort: 3000
 ---
@@ -49,10 +49,10 @@ spec:
     - host: forgejo.example.com
       http:
         paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: forgejo-pool
-              port:
-                number: 3000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: forgejo-blue
+                port:
+                  number: 3000
